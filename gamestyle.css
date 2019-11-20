@@ -1,0 +1,32 @@
+
+.symbol-option {
+    position: relative;
+    display: inline-block;
+    border: 1px solid blue;
+    text-align: center;
+    vertical-align: center;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    color: blue;
+}
+
+.board {
+    height: 50px;
+    width: 50px;
+    color: white;
+    text-align: center;
+    line-height: 48px;
+    font-size: 24px;
+    background-color: aqua;
+}
+
+.game-area {
+    margin: 10px auto;
+    max-width: 166px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 0.5rem;
+    background-color: black;
+}
