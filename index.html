@@ -19,19 +19,25 @@
         <div class="your-symbol"></div>
 
         <div class="game-area">
-            <div class="board" id="8" onclick="selectSquare(this)"> </div>
-            <div class="board" id="7" onclick="selectSquare(this)"> </div>
-            <div class="board" id="6" onclick="selectSquare(this)"> </div>
-            <div class="board" id="5" onclick="selectSquare(this)"> </div>
-            <div class="board" id="4" onclick="selectSquare(this)"> </div>
-            <div class="board" id="3" onclick="selectSquare(this)"> </div>
-            <div class="board" id="2" onclick="selectSquare(this)"> </div>
-            <div class="board" id="1" onclick="selectSquare(this)"> </div>
             <div class="board" id="0" onclick="selectSquare(this)"> </div>
+            <div class="board" id="1" onclick="selectSquare(this)"> </div>
+            <div class="board" id="2" onclick="selectSquare(this)"> </div>
+            <div class="board" id="3" onclick="selectSquare(this)"> </div>
+            <div class="board" id="4" onclick="selectSquare(this)"> </div>
+            <div class="board" id="5" onclick="selectSquare(this)"> </div>
+            <div class="board" id="6" onclick="selectSquare(this)"> </div>
+            <div class="board" id="7" onclick="selectSquare(this)"> </div>
+            <div class="board" id="8" onclick="selectSquare(this)"> </div>
         </div>
 
         <button class="reset" onclick="reset()">Reset</button>
 
-        <script src="timbergame.js"></script>
+        <div>Score
+            <div class="win">Wins: 0</div>
+            <div class="loss">Losses: 0</div>
+            <div class="draw">Draws: 0</div>
+        </div>
+
+        <script src="game.js"></script>
     </body>
 </html>
