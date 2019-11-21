@@ -11,6 +11,7 @@ var wins = 0;
 var losses = 0;
 var draws = 0;
 
+// User selects their symbol, X always goes first
 function selectPlayer(symbol) {
     switch (symbol.id) {
         case 'x':
@@ -27,8 +28,11 @@ function selectPlayer(symbol) {
     $(".player-selection").hide();
     $(".your-symbol").html("Your symbol: " + symbol.id);
 
+    // game board disabled until symbol is chosen
     gameEnabled = true;
+
     if(player === "o") {
+        // choose middle tile as first move
         gameboard[4] = computer;
         updateBoard(4);
     }
@@ -36,8 +40,11 @@ function selectPlayer(symbol) {
 
 }
 
+// User clicks on a square
 function selectSquare(num) {
     var id = num.id;
+
+    // Ensure that selected tile is clickable
     if (gameEnabled && gameboard[id] === "") {
         gameboard[id] = player;
         updateBoard(id);
@@ -71,11 +78,13 @@ function selectSquare(num) {
     } 
 }
 
+// Computer chooses the best available move using the minimax algorithm
 function computerMove() {
     // $(".turn").html("It's the computer's turn");
     var bestScore = -1000;
     var bestMove = -1;
 
+    // calculate a minimax score for each empty tile, choose the max score
     for(var i = 0; i < 9; ++i) {
         if(gameboard[i] === "") {
             var board = gameboard.slice();
@@ -89,7 +98,8 @@ function computerMove() {
             }
         }
     }
-    // console.log("Best move is", bestMove);
+
+    // Make the best move
     gameboard[bestMove] = computer;
     updateBoard(bestMove);
     
@@ -123,15 +133,19 @@ function computerMove() {
     }
 }
 
+/* Minimax algorithm for finding the best move
+* Recursively considers all possible ways the game can go 
+* and calculates a score for each possible move
+* assuming that the user plays perfectly as well
+*/
 function miniMax(board, depth, isMax) {
-    var curr = isMax ? computer : player;
     var score = checkWin(board, computer);
 
     if (score === 10) {
-        return score;
+        return score - depth;
     }
     else if (score === -10) {
-        return score;
+        return score + depth;
     }
     else {
         if (checkDraw(board)) {
@@ -140,38 +154,40 @@ function miniMax(board, depth, isMax) {
     }
 
     if (isMax) {
+        // Computer is the maximizer
         var best = -1000;
 
+        // Try every possible move on blank tiles, call minimax 
         for(var i = 0; i < 9; ++i) {
             if(board[i] === "") {
                 var boardWithMove = board.slice();
                 boardWithMove[i] = computer;
+                // maximized score
                 best = Math.max(best, miniMax(boardWithMove, depth+1, !isMax));
-                // board[i] = "";
             }
-
-            
         }
 
         return best;
     }
     else {
+        // Simulated player is the minimizer
         var best = 1000;
+
+        // Try every possible move on blank tiles, call minimax 
         for(var i = 0; i < 9; ++i) {
             if(board[i] === "") {
                 var boardWithMove = board.slice();
                 boardWithMove[i] = player;
+                // minimized score
                 best = Math.min(best, miniMax(boardWithMove, depth+1, !isMax));
-                // board[i] = "";
             }
-
-            
         }
 
         return best;
     }
 }
 
+// 8 ways to win the game, check each for the given player
 function checkWin(board, curr) {
     var winner = "";
     switch (true) {
@@ -229,6 +245,7 @@ function checkWin(board, curr) {
     return -10;
 }
 
+// There is a draw if there are no empty spaces without a winner
 function checkDraw(board) {
     for(var i  = 0; i < 9; ++i) {
         if(board[i] === ""){
@@ -238,6 +255,8 @@ function checkDraw(board) {
     return true;
 }
 
+
+// Update the value of a given tile
 function updateBoard(i) {
     $("#" + i).html(gameboard[i]);
 
