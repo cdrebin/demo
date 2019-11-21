@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>TicTacToeTimber</title>
+        <title>TimberTicTacToe</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <link rel="stylesheet" href="gamestyle.css" type="text/css" media="screen" charset="utf-8">
     </head>
@@ -11,12 +11,15 @@
         <h1>Welcome to Timber Tic Tac Toe</h1>
         <h2>The unbeatable tic tac toe game</h2>
 
-        <div class="player-selection"> Pick your symbol 
+        <div class="player-selection"> 
+            <div>Pick your symbol</div> 
             <div class="symbol-option" id="x" onclick="selectPlayer(this)"> X </div>
             <div class="symbol-option" id="o" onclick="selectPlayer(this)"> O </div>
         </div>
         
         <div class="your-symbol"></div>
+
+        <div class="turn"></div>
 
         <div class="game-area">
             <div class="board" id="0" onclick="selectSquare(this)"> </div>
@@ -32,7 +35,8 @@
 
         <button class="reset" onclick="reset()">Reset</button>
 
-        <div>Score
+        <div class="scoreboard">
+            <div class="score-title">Score</div>
             <div class="win">Wins: 0</div>
             <div class="loss">Losses: 0</div>
             <div class="draw">Draws: 0</div>

@@ -1,3 +1,7 @@
+h1, h2, .player-selection, .your-symbol, .turn {
+    text-align: center;
+    width: 100%;
+}
 
 .symbol-option {
     position: relative;
@@ -11,6 +15,21 @@
     font-size: 24px;
     color: blue;
 }
+
+/* .player-selection {
+    text-align: center;
+    width: 100%;
+}
+
+.your-symbol {
+    text-align: center;
+    width: 100%;
+}
+
+.turn {
+    text-align: center;
+    width: 100%;
+} */
 
 .board {
     height: 50px;
@@ -29,4 +48,12 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 0.5rem;
     background-color: black;
+}
+
+.scoreboard {
+    margin-top: 40px;
+}
+.score-title {
+    font-size: 24px;
+    text-decoration-line: underline;
 }

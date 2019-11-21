@@ -11,12 +11,9 @@ var wins = 0;
 var losses = 0;
 var draws = 0;
 
-// function runSimulation() {
-//    gameboard = ["o", "", "x", "x", "", "", "x", "o", ""];
-//    for(var i = 0; i < 9; ++i) {
-//        updateBoard(i);
-//    }
-// }
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
 
 function selectPlayer(symbol) {
     switch (symbol.id) {
@@ -33,15 +30,22 @@ function selectPlayer(symbol) {
     
     $(".player-selection").hide();
     $(".your-symbol").html("Your symbol: " + symbol.id);
+
+    var turn = getRandomInt(2);
     gameEnabled = true;
-    gameboard[4] = computer;
-    updateBoard(4);
+    if(turn === 0) {
+        gameboard[4] = computer;
+        updateBoard(4);
+    }
+    $(".turn").html("It's your turn");
+
 }
 
 function selectSquare(num) {
     console.log("SELECT", num.id)
     var id = num.id;
-    if (gameEnabled) {
+    if (gameEnabled && gameboard[id] === "") {
+        $(".turn").html("It's the computer's turn");
         gameboard[id] = player;
         updateBoard(id);
         var draw = checkDraw(gameboard);
@@ -74,6 +78,7 @@ function selectSquare(num) {
 }
 
 function computerMove() {
+    $(".turn").html("It's the computer's turn");
     var bestScore = -1000;
     var bestMove = -1;
 
@@ -113,6 +118,7 @@ function computerMove() {
             updateScore();
             reset();
         }
+    $(".turn").html("It's your turn");
 }
 
 function miniMax(board, depth, isMax) {
