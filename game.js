@@ -11,10 +11,6 @@ var wins = 0;
 var losses = 0;
 var draws = 0;
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
-
 function selectPlayer(symbol) {
     switch (symbol.id) {
         case 'x':
@@ -31,9 +27,8 @@ function selectPlayer(symbol) {
     $(".player-selection").hide();
     $(".your-symbol").html("Your symbol: " + symbol.id);
 
-    var turn = getRandomInt(2);
     gameEnabled = true;
-    if(turn === 0) {
+    if(player === "o") {
         gameboard[4] = computer;
         updateBoard(4);
     }
@@ -42,7 +37,6 @@ function selectPlayer(symbol) {
 }
 
 function selectSquare(num) {
-    console.log("SELECT", num.id)
     var id = num.id;
     if (gameEnabled && gameboard[id] === "") {
         $(".turn").html("It's the computer's turn");
@@ -68,7 +62,6 @@ function selectSquare(num) {
             reset();
         }
         
-        console.log("CHECK", score)
         if(score === 0){
             setTimeout(function() {
                 computerMove();
@@ -95,29 +88,34 @@ function computerMove() {
             }
         }
     }
-    console.log("Best move is", bestMove);
+    // console.log("Best move is", bestMove);
     gameboard[bestMove] = computer;
     updateBoard(bestMove);
     
     var draw = checkDraw(gameboard);
-        var score = checkWin(gameboard, computer);
+    var score = checkWin(gameboard, computer);
 
-        if(draw) {
-            draws++;
-            updateScore();
-            reset();
-        }
+    if(computer === "") {
+        score = 0;
+        $(".turn").html("");
+        return;
+    }
 
-        if(score === 10) {
-            losses++;
-            updateScore();
-            reset();
-        }
-        else if(score === -10) {
-            wins++;
-            updateScore();
-            reset();
-        }
+    if(draw) {
+        draws++;
+        updateScore();
+        reset();
+    }
+    else if(score === 10) {
+        losses++;
+        updateScore();
+        reset();
+    }
+    else if(score === -10) {
+        wins++;
+        updateScore();
+        reset();
+    }
     $(".turn").html("It's your turn");
 }
 
@@ -217,7 +215,7 @@ function checkWin(board, curr) {
             winner = "";
             break;
       }
-    
+
     if(winner === curr) {
         return 10;
     }
@@ -275,5 +273,5 @@ function updateScore() {
 }
 
 function show(one, two, three){
-    console.log("WINNER!", one, two, three);
+    // console.log("WINNER!", one, two, three);
 }
