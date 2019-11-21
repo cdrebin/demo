@@ -290,7 +290,7 @@ function reset() {
 }
 
 function updateScore() {
-    $(".win").html("Wins: " + wins);
-    $(".loss").html("Losses: " + losses);
+    $(".win").html("You: " + wins);
+    $(".loss").html("Computer: " + losses);
     $(".draw").html("Draws: " + draws);
 }
