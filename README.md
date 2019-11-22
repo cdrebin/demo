@@ -2,7 +2,7 @@
 Timber code challenge for an unbeatable game of tic tac toe. 
 
 ## Running the Demo
-You can view the demo [here](cdrebin.github.io/demo)
+You can view the demo [here](https://cdrebin.github.io/demo/)
 To run the demo locally, clone the repo and open index.html in Chrome
 
 ## How it works
